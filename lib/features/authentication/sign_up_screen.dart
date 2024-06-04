@@ -31,49 +31,103 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: Sizes.size32,
+            horizontal: Sizes.size20,
           ),
           child: Column(
             children: [
               Gaps.v80,
-              const Text('Sign up for TikTok',
+              FaIcon(
+                FontAwesomeIcons.twitter,
+                color: Theme.of(context).primaryColor,
+                size: Sizes.size36,
+              ),
+              Gaps.v80,
+              const Text("See what's happening in the world right now.",
                   style: TextStyle(
-                    fontSize: Sizes.size24,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w900,
                   )),
+              Gaps.v80,
               Gaps.v20,
-              const Text(
-                "Create a profile, follow other accounts, make your own videos, and more.",
-                style: TextStyle(
-                  fontSize: Sizes.size14,
-                  color: Colors.black45,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Gaps.v40,
-              GestureDetector(
-                onTap: () => onEmailTap(context),
-                child: const AuthButton(
-                    icon: FaIcon(FontAwesomeIcons.user),
-                    text: "Use email & password"),
-              ),
+              const AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.google),
+                  text: "Continue with Google"),
               Gaps.v16,
               const AuthButton(
                   icon: FaIcon(FontAwesomeIcons.apple),
                   text: "Continue with Apple"),
+              Gaps.v16,
+              const Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black45,
+                      thickness: 1,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('OR'),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black45,
+                      thickness: 1,
+                    ),
+                  ),
+                ],
+              ),
+              GestureDetector(
+                onTap: () => onEmailTap(context),
+                child: const AuthButton(
+                  text: "Create account",
+                ),
+              ),
+              Gaps.v20,
+              Center(
+                  child: RichText(
+                text: TextSpan(
+                  children: [
+                    const TextSpan(
+                        text: "By signing up, you agree to our ",
+                        style: TextStyle(
+                          fontSize: Sizes.size16,
+                          color: Colors.black87,
+                        )),
+                    TextSpan(
+                        text: "Terms,Prifacy Policy",
+                        style: TextStyle(
+                          fontSize: Sizes.size16,
+                          color: Theme.of(context).primaryColor,
+                        )),
+                    const TextSpan(
+                        text: " and ",
+                        style: TextStyle(
+                          fontSize: Sizes.size16,
+                          color: Colors.black87,
+                        )),
+                    TextSpan(
+                        text: "Cookie Use.",
+                        style: TextStyle(
+                          fontSize: Sizes.size16,
+                          color: Theme.of(context).primaryColor,
+                        )),
+                  ],
+                ),
+              ))
             ],
           ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey.shade100,
-        elevation: 3,
+        color: Colors.white,
+        elevation: 1,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: Sizes.size20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Already have an account?'),
+              const Text('Have an account already?'),
               Gaps.h5,
               GestureDetector(
                 onTap: () => onLoginTap(context),
