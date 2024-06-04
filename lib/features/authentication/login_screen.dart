@@ -15,6 +15,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: FaIcon(
+          FontAwesomeIcons.twitter,
+          color: Theme.of(context).primaryColor,
+          size: Sizes.size36,
+        ),
+      ),
       body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -23,7 +30,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               Gaps.v80,
-              Text('Log in to TikTok',
+              Text('Log in to Twitter',
                   style: TextStyle(
                     fontSize: Sizes.size24,
                     fontWeight: FontWeight.w700,

@@ -28,6 +28,13 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: FaIcon(
+          FontAwesomeIcons.twitter,
+          color: Theme.of(context).primaryColor,
+          size: Sizes.size36,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -35,12 +42,7 @@ class SignUpScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Gaps.v80,
-              FaIcon(
-                FontAwesomeIcons.twitter,
-                color: Theme.of(context).primaryColor,
-                size: Sizes.size36,
-              ),
+              Gaps.v20,
               Gaps.v80,
               const Text("See what's happening in the world right now.",
                   style: TextStyle(
@@ -95,7 +97,7 @@ class SignUpScreen extends StatelessWidget {
                           color: Colors.black87,
                         )),
                     TextSpan(
-                        text: "Terms,Prifacy Policy",
+                        text: "Terms,Privacy Policy",
                         style: TextStyle(
                           fontSize: Sizes.size16,
                           color: Theme.of(context).primaryColor,
