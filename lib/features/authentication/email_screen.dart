@@ -12,9 +12,12 @@ class EmailScreen extends StatefulWidget {
 
 class _EmailScreenState extends State<EmailScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Map<String, String> formData = {};
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
-      _formKey.currentState!.validate();
+      if (_formKey.currentState!.validate()) {
+        _formKey.currentState!.save();
+      }
     }
   }
 
@@ -49,13 +52,17 @@ class _EmailScreenState extends State<EmailScreen> {
                 children: [
                   Gaps.v28,
                   TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Name",
-                    ),
-                    validator: (value) {
-                      return " I don't like your email";
-                    },
-                  ),
+                      decoration: const InputDecoration(
+                        hintText: "Name",
+                      ),
+                      validator: (value) {
+                        return " I don't like your name";
+                      },
+                      onSaved: (newValue) {
+                        if (newValue != null) {
+                          formData['name'] = newValue;
+                        }
+                      }),
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: "Email",
@@ -63,8 +70,9 @@ class _EmailScreenState extends State<EmailScreen> {
                     validator: (value) {
                       return " I don't like your email";
                     },
+                    onSaved: (newValue) => print(newValue),
                   ),
-                ],
+                ], // have to make email field, button
               ),
             )
           ],
