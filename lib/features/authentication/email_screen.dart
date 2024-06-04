@@ -17,13 +17,13 @@ class EmailScreen extends StatelessWidget {
           "Sign up",
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: Sizes.size36),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.size36),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gaps.v40,
-            Text(
+            const Text(
               "Create username",
               style: TextStyle(
                 fontSize: Sizes.size20,
@@ -31,13 +31,28 @@ class EmailScreen extends StatelessWidget {
               ),
             ),
             Gaps.v8,
-            Text(
+            const Text(
               "You can always change this later.",
               style: TextStyle(
                 color: Colors.black45,
                 fontSize: Sizes.size16,
                 fontWeight: FontWeight.w600,
               ),
+            ),
+            Gaps.v16,
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Username",
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                  color: Colors.grey.shade400,
+                )),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                  color: Colors.grey.shade400,
+                )),
+              ),
+              cursorColor: Theme.of(context).primaryColor,
             ),
           ],
         ),
