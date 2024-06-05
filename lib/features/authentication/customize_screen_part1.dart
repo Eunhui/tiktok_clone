@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/confirm_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 class CustomizeScreenPart1 extends StatefulWidget {
@@ -19,15 +20,11 @@ class CustomizeScreenPart1 extends StatefulWidget {
 class _CustomizeScreenPart1State extends State<CustomizeScreenPart1> {
   bool isChecked = false;
   void _onSubmitTap() {
-    /*Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CustomizeScreenPart2(formData: formData),
-          ),
-          */
+    //Navigator.of(context).pop(confirm: true);
   }
+
   @override
   Widget build(BuildContext context) {
-    bool switchState = false;
     return Scaffold(
       appBar: AppBar(
         title: FaIcon(

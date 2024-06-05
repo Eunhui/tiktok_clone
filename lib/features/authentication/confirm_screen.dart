@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,14 +6,15 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/customize_screen_part1.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
-class EmailScreen extends StatefulWidget {
-  const EmailScreen({super.key});
+class ConfirmScreen extends StatefulWidget {
+  const ConfirmScreen({super.key, required this.formData});
+  final Map<String, String> formData;
 
   @override
-  State<EmailScreen> createState() => _EmailScreenState();
+  State<ConfirmScreen> createState() => _ConfirmScreenState();
 }
 
-class _EmailScreenState extends State<EmailScreen> {
+class _ConfirmScreenState extends State<ConfirmScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -24,7 +23,6 @@ class _EmailScreenState extends State<EmailScreen> {
   String _email = "";
   String _name = "";
   DateTime initialDate = DateTime.now();
-  bool confirm = false;
 
   late FocusNode focusBday;
   bool dateFocused = false;
