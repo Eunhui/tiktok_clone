@@ -86,6 +86,7 @@ class _EmailScreenState extends State<EmailScreen> {
       onTap: _onScaffoldTap,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: FaIcon(
             FontAwesomeIcons.twitter,
             color: Theme.of(context).primaryColor,
@@ -114,6 +115,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     Gaps.v28,
                     TextFormField(
                         controller: _nameController,
+                        cursorColor: Theme.of(context).primaryColor,
                         decoration: const InputDecoration(
                           hintText: "Name",
                         ),
@@ -130,6 +132,7 @@ class _EmailScreenState extends State<EmailScreen> {
                         }),
                     TextFormField(
                       controller: _emailController,
+                      cursorColor: Theme.of(context).primaryColor,
                       decoration: const InputDecoration(
                         hintText: "Email",
                       ),
