@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 class EmailScreen extends StatefulWidget {
   const EmailScreen({super.key});
@@ -25,6 +26,12 @@ class _EmailScreenState extends State<EmailScreen> {
   }
 
   @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -43,26 +50,17 @@ class _EmailScreenState extends State<EmailScreen> {
           children: [
             Gaps.v40,
             const Text(
-              "Create username",
+              "What is your email?",
               style: TextStyle(
                 fontSize: Sizes.size20,
                 fontWeight: FontWeight.w800,
-              ),
-            ),
-            Gaps.v8,
-            const Text(
-              "You can always change this later.",
-              style: TextStyle(
-                color: Colors.black45,
-                fontSize: Sizes.size16,
-                fontWeight: FontWeight.w600,
               ),
             ),
             Gaps.v16,
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
-                hintText: "Username",
+                hintText: "Email",
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                   color: Colors.grey.shade400,
@@ -75,33 +73,7 @@ class _EmailScreenState extends State<EmailScreen> {
               cursorColor: Theme.of(context).primaryColor,
             ),
             Gaps.v16,
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: AnimatedContainer(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.size16,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Sizes.size5),
-                  color: _username.isEmpty
-                      ? Colors.grey.shade300
-                      : Theme.of(context).primaryColor,
-                ),
-                duration: const Duration(milliseconds: 300),
-                child: AnimatedDefaultTextStyle(
-                  duration: const Duration(milliseconds: 300),
-                  style: TextStyle(
-                    color:
-                        _username.isEmpty ? Colors.grey.shade400 : Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  child: const Text(
-                    'Next',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
+            FormButton(disabled: _username.isEmpty),
           ],
         ),
       ),
