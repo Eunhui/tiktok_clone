@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -17,14 +18,21 @@ class _EmailScreenState extends State<EmailScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _bdayController = TextEditingController();
+
   String _email = "";
   String _name = "";
+  DateTime initialDate = DateTime.now();
   final String _bday = "";
   Map<String, String> formData = {};
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => CustomizeScreenPart1(formData: formData),
+          ),
+        );
       }
     }
   }
@@ -42,21 +50,15 @@ class _EmailScreenState extends State<EmailScreen> {
         _email = _emailController.text;
       });
     });
+    _setTextFieldDate(initialDate);
   }
 
   @override
   void dispose() {
     _emailController.dispose();
     _nameController.dispose();
+    _bdayController.dispose();
     super.dispose();
-  }
-
-  void onEmailTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const CustomizeScreenPart1(),
-      ),
-    );
   }
 
   bool _isEmailValid() {
@@ -73,13 +75,9 @@ class _EmailScreenState extends State<EmailScreen> {
     FocusScope.of(context).unfocus();
   }
 
-  void _onSubmit() {
-    if (_email.isEmpty || _isEmailValid() != null) return;
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CustomizeScreenPart1(),
-        ));
+  void _setTextFieldDate(DateTime date) {
+    final textDate = date.toString().split(" ").first;
+    _bdayController.value = TextEditingValue(text: textDate);
   }
 
   @override
@@ -149,6 +147,33 @@ class _EmailScreenState extends State<EmailScreen> {
                         }
                       },
                     ),
+                    Gaps.v16,
+                    TextFormField(
+                      enabled: false,
+                      controller: _bdayController,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                          ),
+                        ),
+                      ),
+                      cursorColor: Theme.of(context).primaryColor,
+                    ),
+                    Gaps.v28,
+                    GestureDetector(
+                      onTap: _onSubmitTap,
+                      child: FormButton(
+                        disabled: (_name.isEmpty ||
+                            _email.isEmpty ||
+                            !_isEmailValid()),
+                      ),
+                    ),
                   ], // have to make email field, button
                 ),
               )
@@ -156,12 +181,13 @@ class _EmailScreenState extends State<EmailScreen> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-          color: Colors.white,
-          elevation: 0,
-          child: GestureDetector(
-            onTap: _onSubmitTap,
-            child: FormButton(
-              disabled: (_name.isEmpty || _email.isEmpty || !_isEmailValid()),
+          child: SizedBox(
+            height: 300,
+            child: CupertinoDatePicker(
+              maximumDate: initialDate,
+              initialDateTime: initialDate,
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: _setTextFieldDate,
             ),
           ),
         ),
