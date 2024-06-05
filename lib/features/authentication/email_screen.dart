@@ -132,8 +132,10 @@ class _EmailScreenState extends State<EmailScreen> {
                           hintText: "Name",
                         ),
                         validator: (value) {
-                          if (value != null && value.isEmpty) {
-                            return "Check your name";
+                          if (value != null) {
+                            if (value.isEmpty || !_isEmailValid()) {
+                              return "Check your name";
+                            }
                           }
                           return null;
                         },
