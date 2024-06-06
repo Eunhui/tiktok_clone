@@ -3,26 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/confirm_screen.dart';
+//import 'package:tiktok_clone/features/authentication/confirm_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 class CustomizeScreenPart1 extends StatefulWidget {
   const CustomizeScreenPart1({
     super.key,
-    required this.formData,
   });
-  final Map<String, String> formData;
 
   @override
   State<CustomizeScreenPart1> createState() => _CustomizeScreenPart1State();
 }
 
-class _CustomizeScreenPart1State extends State<CustomizeScreenPart1> {
-  bool isChecked = false;
-  void _onSubmitTap() {
-    //Navigator.of(context).pop(confirm: true);
-  }
+bool isChecked = false;
 
+class _CustomizeScreenPart1State extends State<CustomizeScreenPart1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +137,11 @@ class _CustomizeScreenPart1State extends State<CustomizeScreenPart1> {
         color: Colors.white,
         elevation: 0,
         child: GestureDetector(
-          onTap: _onSubmitTap,
+          onTap: () {
+            if (isChecked) {
+              Navigator.pop(context, isChecked);
+            }
+          },
           child: FormButton(
             disabled: !isChecked,
           ),
