@@ -83,6 +83,7 @@ class SignUpScreen extends StatelessWidget {
                 onTap: () => onEmailTap(context),
                 child: const AuthButton(
                   text: "Create account",
+                  isBlack: true,
                 ),
               ),
               Gaps.v20,

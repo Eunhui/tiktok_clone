@@ -5,8 +5,10 @@ import 'package:tiktok_clone/constants/sizes.dart';
 class AuthButton extends StatelessWidget {
   final String text;
   final FaIcon? icon;
+  final bool? isBlack;
 
-  const AuthButton({super.key, required this.text, this.icon});
+  const AuthButton(
+      {super.key, required this.text, this.icon, this.isBlack = false});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,10 @@ class AuthButton extends StatelessWidget {
           horizontal: Sizes.size14,
         ),
         decoration: BoxDecoration(
+            color: isBlack! ? Colors.black87 : Colors.white,
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: Colors.grey.shade200,
+              color: isBlack! ? Colors.white : Colors.grey.shade200,
               width: Sizes.size2,
             )),
         child: Stack(
@@ -31,9 +34,10 @@ class AuthButton extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: Sizes.size16,
                   fontWeight: FontWeight.w600,
+                  color: isBlack! ? Colors.white : Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
