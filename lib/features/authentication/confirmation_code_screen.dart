@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -16,17 +17,25 @@ class ConfirmationCodeScreen extends StatefulWidget {
 }
 
 class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
-  final TextEditingController _numController1 = TextEditingController();
-  final TextEditingController _numController2 = TextEditingController();
-  final TextEditingController _numController3 = TextEditingController();
-  final TextEditingController _numController4 = TextEditingController();
-  final TextEditingController _numController5 = TextEditingController();
-  final TextEditingController _numController6 = TextEditingController();
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<String> code = ['', '', '', ''];
+  var confirmCode;
   @override
   void initState() {
     super.initState();
   }
+
+  String? _isNumber(String? number) {
+    if (number == null) return null;
+    return ("number");
+  }
+
+  void setNumber(int order, String value) {
+    code[order] = value;
+    setState(() {});
+  }
+
+  bool _isFormValid() => _formKey.currentState?.validate() ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,56 +47,142 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
           size: Sizes.size36,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gaps.v40,
-            const Text(
-              "We sent you a code",
-              style: TextStyle(
-                fontSize: Sizes.size32,
-                fontWeight: FontWeight.w800,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v40,
+              const Text(
+                "We sent you a code",
+                style: TextStyle(
+                  fontSize: Sizes.size32,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-            Gaps.v20,
-            Text("Enter it below to verify\n${widget.emailAddress}. ",
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: Sizes.size20,
-                )),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          //When the TextFormField is ON focus
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal),
-                          ),
-                        ),
-                      ),
-                    ],
+              Gaps.v20,
+              Text("Enter it below to verify\n${widget.emailAddress}. ",
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontSize: Sizes.size20,
+                  )),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: const InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              //When the TextFormField is ON focus
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal),
+                              ),
+                            ),
+                            validator: _isNumber,
+                            onChanged: (value) {
+                              _isFormValid();
+                              setNumber(0, value);
+                              FocusScope.of(context).nextFocus();
+                            }),
+                      ],
+                    ),
                   ),
-                )
-              ],
-            ),
-            Gaps.v80,
-            Text(
-              "Didn't receive email?",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: Sizes.size20,
+                  Expanded(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: const InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              //When the TextFormField is ON focus
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal),
+                              ),
+                            ),
+                            onChanged: (value) {
+                              _isFormValid();
+                              setNumber(1, value);
+                              FocusScope.of(context).nextFocus();
+                            }),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: const InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              //When the TextFormField is ON focus
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal),
+                              ),
+                            ),
+                            onChanged: (value) {
+                              _isFormValid();
+                              setNumber(2, value);
+                              FocusScope.of(context).nextFocus();
+                            }),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: const InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              //When the TextFormField is ON focus
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal),
+                              ),
+                            ),
+                            onChanged: (value) {
+                              _isFormValid();
+                              setNumber(3, value);
+                              FocusScope.of(context).nextFocus();
+                            }),
+                      ],
+                    ),
+                  )
+                ],
               ),
-            ),
-            const AuthButton(text: "Next", isBlack: true),
-          ],
+              Gaps.v80,
+              Text(
+                "Didn't receive email?",
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: Sizes.size20,
+                ),
+              ),
+              const AuthButton(text: "Next", isBlack: true),
+            ],
+          ),
         ),
       ),
     );

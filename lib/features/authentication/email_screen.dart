@@ -18,12 +18,8 @@ class EmailScreen extends StatefulWidget {
 
 class _EmailScreenState extends State<EmailScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _bdayController = TextEditingController();
 
-  final String _email = "";
-  final String _name = "";
   DateTime initialDate = DateTime.now();
 
   late FocusNode focusBday;
