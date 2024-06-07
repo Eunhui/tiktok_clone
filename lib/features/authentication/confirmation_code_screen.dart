@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 class ConfirmationCodeScreen extends StatefulWidget {
   final String emailAddress;
@@ -33,6 +34,13 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
   void setNumber(int order, String value) {
     code[order] = value;
     setState(() {});
+  }
+
+  bool isCodeAvailable() {
+    if (code.join().length == 4) {
+      return true;
+    }
+    return false;
   }
 
   bool _isFormValid() => _formKey.currentState?.validate() ?? false;
@@ -79,11 +87,11 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                             ],
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.grey),
                               ),
                               //When the TextFormField is ON focus
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.teal),
+                                borderSide: BorderSide(color: Colors.black),
                               ),
                             ),
                             validator: _isNumber,
@@ -105,11 +113,11 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                             ],
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.grey),
                               ),
                               //When the TextFormField is ON focus
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.teal),
+                                borderSide: BorderSide(color: Colors.black),
                               ),
                             ),
                             onChanged: (value) {
@@ -130,11 +138,11 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                             ],
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.grey),
                               ),
                               //When the TextFormField is ON focus
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.teal),
+                                borderSide: BorderSide(color: Colors.black),
                               ),
                             ),
                             onChanged: (value) {
@@ -155,11 +163,11 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                             ],
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.grey),
                               ),
                               //When the TextFormField is ON focus
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.teal),
+                                borderSide: BorderSide(color: Colors.black),
                               ),
                             ),
                             onChanged: (value) {
@@ -169,9 +177,12 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                             }),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
+              isCodeAvailable()
+                  ? const Icon(Icons.check_circle, color: Colors.green)
+                  : const Text(""),
               Gaps.v80,
               Text(
                 "Didn't receive email?",
@@ -180,7 +191,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                   fontSize: Sizes.size20,
                 ),
               ),
-              const AuthButton(text: "Next", isBlack: true),
+              FormButton(disabled: isCodeAvailable()),
             ],
           ),
         ),
