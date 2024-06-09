@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/password_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
@@ -38,12 +39,21 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
 
   bool isCodeAvailable() {
     if (code.join().length == 4) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
   bool _isFormValid() => _formKey.currentState?.validate() ?? false;
+
+  void passwordTap(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PasswordScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,8 +191,8 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                 ],
               ),
               isCodeAvailable()
-                  ? const Icon(Icons.check_circle, color: Colors.green)
-                  : const Text(""),
+                  ? const Text("")
+                  : const Icon(Icons.check_circle, color: Colors.green),
               Gaps.v80,
               Text(
                 "Didn't receive email?",
@@ -191,7 +201,38 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                   fontSize: Sizes.size20,
                 ),
               ),
-              FormButton(disabled: isCodeAvailable()),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.grey.shade50,
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.size20,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.size80 + Sizes.size52,
+                  vertical: Sizes.size10,
+                ),
+                decoration: BoxDecoration(
+                  color: isCodeAvailable() ? Colors.black54 : Colors.black,
+                  borderRadius: BorderRadius.circular(
+                    (Sizes.size32),
+                  ),
+                ),
+                child: const Text('Next',
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    )),
+              )
             ],
           ),
         ),
