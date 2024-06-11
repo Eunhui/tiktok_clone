@@ -8,29 +8,33 @@ class PostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: Sizes.size40,
-                    width: Sizes.size40,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
+    return SizedBox(
+      width: 200,
+      height: 300,
+      child: Scaffold(
+        body: Column(
+          children: [
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: Sizes.size40,
+                      width: Sizes.size40,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        FontAwesomeIcons.user,
+                        size: Sizes.size20,
+                      ),
                     ),
-                    child: const Icon(
-                      FontAwesomeIcons.user,
-                      size: Sizes.size20,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
