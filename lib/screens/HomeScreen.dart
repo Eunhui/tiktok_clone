@@ -7,23 +7,25 @@ class Homescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            title: Center(
-              child: Icon(
-                FontAwesomeIcons.threads,
-                size: 36,
+    return Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              title: Center(
+                child: Icon(
+                  FontAwesomeIcons.threads,
+                  size: 36,
+                ),
               ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate((context, length) {
-              return const PostScreen();
-            }),
-          )
-        ],
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, length) {
+                return const PostScreen();
+              }),
+            )
+          ],
+        ),
       ),
     );
   }
