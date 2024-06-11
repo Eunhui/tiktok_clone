@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/posts/post.dart';
+import 'package:tiktok_clone/posts/user.dart';
 import 'package:tiktok_clone/screens/post_screen.dart';
 
 class Homescreen extends StatelessWidget {
@@ -20,9 +22,13 @@ class Homescreen extends StatelessWidget {
               ),
             ),
             SliverList(
-              delegate: SliverChildBuilderDelegate((context, length) {
-                return const PostScreen();
-              }),
+              delegate: SliverChildBuilderDelegate(
+                childCount: postLists.length,
+                (context, index) {
+                  final post = postLists[index];
+                  return PostScreen(post: post);
+                },
+              ),
             )
           ],
         ),
