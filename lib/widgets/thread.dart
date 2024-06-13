@@ -1,24 +1,28 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:threads/widgets/modal_bottom.dart';
 import 'package:threads/widgets/reply_timeline.dart';
 
 import '../constants/gaps.dart';
 import '../utils.dart';
 import 'image_carousel.dart';
 
-class Thread extends StatelessWidget {
+class Thread extends StatefulWidget {
   const Thread({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<Thread> createState() => _ThreadState();
+}
+
+class _ThreadState extends State<Thread> {
   void onMenuTap(BuildContext context) {
     showModalBottomSheet(
+      showDragHandle: true,
       context: context,
-      builder: (context) => Container(
-        child: const ListTile(
-          title: Text('unFollow'),
-        ),
-      ),
+      builder: (context) => const ModalBottom(),
     );
   }
 

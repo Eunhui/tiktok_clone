@@ -1,0 +1,10 @@
+(function() {
+  var span = document.querySelector('footer>span');
+  if (span) {
+    span.innerText = 'Flutter 3.22.2 • 2024-06-06 09:51 • 761747bfc5 • stable';
+  }
+  var sourceLink = document.querySelector('a.source-link');
+  if (sourceLink) {
+    sourceLink.href = sourceLink.href.replace('/master/', '/761747bfc5/');
+  }
+})();

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)https://dartpad.dev/?embed=true&split=60&run=true&sample_id=material.Divider.2&channel=stable -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<base href="/">--><base href=".">
+
+  
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="An online Dart editor with support for console and Flutter apps.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="DartPad">
+  <link rel="apple-touch-icon" href="https://dartpad.dev/icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://dartpad.dev/favicon.png">
+
+  <title>DartPad</title>
+  <link rel="manifest" href="https://dartpad.dev/manifest.json">
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "2422260101";
+  </script>
+
+  <link href="./css2(2)" rel="stylesheet">
+  <link href="./codemirror.css" rel="stylesheet">
+  <link href="./cm-dartpad-dark.css" rel="stylesheet" media="screen">
+  <link href="./cm-dartpad-light.css" rel="stylesheet" media="screen">
+  <script src="./codemirror.js.download"></script>
+
+  <style>
+    .CodeMirror {
+      height: 100%;
+    }
+
+    .squiggle-info {
+      border-bottom: 2px solid #7EA7D8;
+    }
+    .squiggle-warning {
+      border-bottom: 2px solid #d9d077;
+    }
+    .squiggle-error {
+      border-bottom: 2px solid #EF5350;
+    }
+
+    .CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
+      position: absolute;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
+      position: absolute;
+      z-index: 6;
+    }
+
+    .CodeMirror-simplescroll-horizontal {
+      bottom: 0;
+      left: 0;
+      height: 9px;
+    }
+
+    .CodeMirror-simplescroll-horizontal div {
+      bottom: 0;
+      height: 100%;
+    }
+
+    .CodeMirror-simplescroll-vertical {
+      right: 0;
+      top: 0;
+      width: 9px;
+    }
+
+    .CodeMirror-simplescroll-vertical div {
+      right: 0;
+      width: 100%;
+    }
+  </style>
+
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="./flutter.js.download" defer=""></script>
+<script type="application/javascript" src="./main.dart.js.download"></script><meta flt-viewport="" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta id="flutterweb-theme" name="theme-color" content="#445e91"></head>
+
+<body flt-embedding="full-page" flt-renderer="canvaskit (requested explicitly)" flt-build-mode="release" spellcheck="false" style="position: fixed; inset: 0px; overflow: hidden; padding: 0px; margin: 0px; user-select: none; touch-action: none;"><flt-semantics-placeholder role="button" aria-live="polite" tabindex="0" aria-label="Enable accessibility" style="position: absolute; left: -1px; top: -1px; width: 1px; height: 1px;"></flt-semantics-placeholder>
+  <script>
+    window.addEventListener('load', function (ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+
+
+
+<div class="shadowDomRootBetterColorPicker" style="display: block;"><template shadowrootmode="open"><div class="content" style="right: -10000px; bottom: -10000px;">
+                <style>
+                    .hidden {
+                        display: none;
+                    }
+                    .content {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        z-index: 999999999;
+                    }
+                    .close {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        cursor: pointer;
+                        padding: 5px;
+                        z-index: 8;
+                        transition: transform 0.2s;
+                    }
+                    .contents:hover .close {
+                        left: -40px;
+                        right: unset;
+                    }
+                    .content:hover .close {
+                        transform: translateX(-30px);
+                    }
+                    .close svg {
+                        height: 20px;
+                        width: 20px;
+                        cursor: pointer;
+                    }
+                    .content img {
+                        position: relative !important;
+                        right: unset !important;
+                        bottom: unset !important;
+                        cursor: pointer;
+                        z-index: 10;
+                    }
+                    .confirm {
+                        position: absolute;
+                        bottom: 0;
+                        right: calc(100% + 4px);
+                        padding: 8px;
+                        border-radius: 8px;
+                        border: 1px solid #637688;
+                        background: #191E23;
+                        z-index: 9;
+                    }
+                    .confirm .title {
+                        color: #FFF;
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+                    .confirm .info {
+                        min-width: 200px;
+                        margin: 8px 0 16px;
+                        color: #E5E9ED;
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 150%;
+                    }
+                    .btns {
+                        display: flex;
+                        gap: 16px;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: nowrap;
+                    }
+                    .btns button {
+                        padding: 4px 8px;
+                        color: #FFF;
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                        font-weight: 700;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        background-color: transparent;
+                        white-space: nowrap;
+                    }
+                </style>
+                <div class="confirm hidden" id="confirm">
+                    <p class="title">Are you sure?</p>
+                    <p class="info">You can always add the widget back from the extension menu</p>
+                    <div class="btns">
+                        <button id="cancel">Cancel</button>
+                        <button id="hide">Hide widget</button>
+                    </div>
+                </div>
+                <div class="close" id="close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#191E23"></rect>
+                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#637688"></rect>
+                        <path d="M6.26668 14.6666L5.33334 13.7333L9.06668 9.99998L5.33334 6.26665L6.26668 5.33331L10 9.06665L13.7333 5.33331L14.6667 6.26665L10.9333 9.99998L14.6667 13.7333L13.7333 14.6666L10 10.9333L6.26668 14.6666Z" fill="#E5E9ED"></path>
+                    </svg>                
+                </div>
+            <img src="chrome-extension://gpibachbddnihfkbjcfggbejjgjdijeb/images/image-button.png" alt="Pick a color on this page!" style="height: 30px; width: 30px; z-index: 9999991; position: fixed; bottom: 10px; right: 10px; cursor: pointer;"></div><div class="alertWindow" style="line-height: 40px; left: 45%; text-align: center; height: 40px; width: 200px; background-color: rgba(47, 46, 46, 0.54); transition: 0.4s; position: fixed; top: -40px; z-index: 999999; border-radius: 5px;">Copied!</div></template></div><flt-announcement-host><flt-announcement-polite aria-live="polite" style="position: fixed; overflow: hidden; transform: translate(-99999px, -99999px); width: 1px; height: 1px;"></flt-announcement-polite><flt-announcement-assertive aria-live="assertive" style="position: fixed; overflow: hidden; transform: translate(-99999px, -99999px); width: 1px; height: 1px;"></flt-announcement-assertive></flt-announcement-host><flutter-view flt-view-id="0" tabindex="0" style="position: absolute; inset: 0px; width: 946px; height: 496px;"><flt-glass-pane><template shadowrootmode="open"><flt-scene-host style="pointer-events: none;"><flt-canvas-container><canvas aria-hidden="true" width="1419" height="744" style="position: absolute; width: 946px; height: 496px;"></canvas></flt-canvas-container><flt-clip style="width: 100%; height: 100%; transform-origin: 0px 0px 0px; position: absolute; clip: rect(0px, 946px, 496px, 0px); transform: none;"><flt-platform-view-slot style="pointer-events: auto; width: 565.56px; height: 480px; position: absolute; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 8, 8); opacity: 1;"><slot name="flt-pv-slot-0"></slot></flt-platform-view-slot></flt-clip><flt-clip style="width: 100%; height: 100%; transform-origin: 0px 0px 0px; position: absolute; clip: rect(0px, 946px, 496px, 0px); transform: none;"><flt-platform-view-slot style="pointer-events: auto; width: 32px; height: 32px; position: absolute; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 433.198, 16); opacity: 1;"><slot name="flt-pv-slot-1"></slot></flt-platform-view-slot></flt-clip><flt-clip style="width: 100%; height: 100%; transform-origin: 0px 0px 0px; position: absolute; clip: rect(0px, 946px, 496px, 0px); transform: none;"><flt-platform-view-slot style="pointer-events: auto; width: 76.3625px; height: 32px; position: absolute; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 481.198, 16); opacity: 1;"><slot name="flt-pv-slot-2"></slot></flt-platform-view-slot></flt-clip><flt-canvas-container><canvas aria-hidden="true" width="1419" height="744" style="position: absolute; width: 946px; height: 496px;"></canvas></flt-canvas-container><flt-clip style="width: 100%; height: 100%; transform-origin: 0px 0px 0px; position: absolute; clip: rect(0px, 946px, 496px, 0px); transform: none;"><flt-platform-view-slot style="pointer-events: auto; width: 340.44px; height: 370.88px; position: absolute; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 597.56, 8); opacity: 1;"><slot name="flt-pv-slot-3"></slot></flt-platform-view-slot></flt-clip><flt-canvas-container><canvas aria-hidden="true" width="1419" height="744" style="position: absolute; width: 946px; height: 496px;"></canvas></flt-canvas-container></flt-scene-host><style id="flt-internals-stylesheet"> flt-scene-host {  font: normal normal 14px sans-serif;} flt-semantics input[type=range] {  appearance: none;  -webkit-appearance: none;  width: 100%;  position: absolute;  border: none;  top: 0;  right: 0;  bottom: 0;  left: 0;} input::selection {  background-color: transparent;} textarea::selection {  background-color: transparent;} flt-semantics input, flt-semantics textarea, flt-semantics [contentEditable="true"] {  caret-color: transparent;} .flt-text-editing::placeholder {  opacity: 0;}:focus { outline: none;} .transparentTextEditing:-webkit-autofill, .transparentTextEditing:-webkit-autofill:hover, .transparentTextEditing:-webkit-autofill:focus, .transparentTextEditing:-webkit-autofill:active {  opacity: 0 !important;}</style></template><flt-platform-view id="flt-pv-0" slot="flt-pv-slot-0"><div style="width: 100%; height: 100%;"><div class="CodeMirror cm-s-darkpad CodeMirror-wrap CodeMirror-simplescroll" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 33px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-simplescroll-horizontal" cm-not-content="true" style="display: none;"><div></div></div><div class="CodeMirror-simplescroll-vertical" cm-not-content="true" style="display: block; bottom: 0px;"><div style="height: 247.976px; top: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -17px; border-right-width: 33px; min-height: 960px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 15.8667px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-string">'package:flutter/material.dart'</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/// Flutter code sample for [Divider].</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">void</span> <span class="cm-variable">main</span>() <span class="cm-operator">=&gt;</span> <span class="cm-variable">runApp</span>(<span class="cm-keyword">const</span> <span class="cm-variable-2">DividerExampleApp</span>());</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">class</span> <span class="cm-variable-2">DividerExampleApp</span> <span class="cm-keyword">extends</span> <span class="cm-variable-2">StatelessWidget</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">const</span> <span class="cm-variable-2">DividerExampleApp</span>({<span class="cm-keyword">super</span>.<span class="cm-variable">key</span>});</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-meta">@override</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-2">Widget</span> <span class="cm-variable">build</span>(<span class="cm-variable-2">BuildContext</span> <span class="cm-variable">context</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable-2">MaterialApp</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-variable">theme</span>: <span class="cm-variable-2">ThemeData</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">colorSchemeSeed</span>: <span class="cm-keyword">const</span> <span class="cm-variable-2">Color</span>(<span class="cm-number">0xff6750a4</span>), <span class="cm-variable">useMaterial3</span>: <span class="cm-atom">true</span>),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-variable">home</span>: <span class="cm-variable-2">Scaffold</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">appBar</span>: <span class="cm-variable-2">AppBar</span>(<span class="cm-variable">title</span>: <span class="cm-keyword">const</span> <span class="cm-variable-2">Text</span>(<span class="cm-string">'Divider Sample'</span>)),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">body</span>: <span class="cm-keyword">const</span> <span class="cm-variable-2">DividerExample</span>(),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  );</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">23</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">class</span> <span class="cm-variable-2">DividerExample</span> <span class="cm-keyword">extends</span> <span class="cm-variable-2">StatelessWidget</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">24</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">const</span> <span class="cm-variable-2">DividerExample</span>({<span class="cm-keyword">super</span>.<span class="cm-variable">key</span>});</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">25</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">26</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-meta">@override</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">27</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-2">Widget</span> <span class="cm-variable">build</span>(<span class="cm-variable-2">BuildContext</span> <span class="cm-variable">context</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">28</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-keyword">const</span> <span class="cm-variable-2">Center</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">29</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-variable">child</span>: <span class="cm-variable-2">Padding</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">30</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">padding</span>: <span class="cm-variable-2">EdgeInsets</span>.<span class="cm-variable">all</span>(<span class="cm-number">16.0</span>),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">31</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">child</span>: <span class="cm-variable-2">Column</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">32</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">children</span>: <span class="cm-operator">&lt;</span><span class="cm-variable-2">Widget</span><span class="cm-operator">&gt;</span>[</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">33</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable-2">Expanded</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">34</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">child</span>: <span class="cm-variable-2">Card</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">35</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">child</span>: <span class="cm-variable-2">SizedBox</span>.<span class="cm-variable">expand</span>(),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">36</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">37</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">38</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable-2">Divider</span>(),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">39</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable-2">Expanded</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">40</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">child</span>: <span class="cm-variable-2">Card</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">41</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">child</span>: <span class="cm-variable-2">SizedBox</span>.<span class="cm-variable">expand</span>(),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">42</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">43</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">44</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;  ],</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">45</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">46</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">47</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  );</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">48</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">49</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">50</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 0px solid transparent; top: 960px;"></div><div class="CodeMirror-gutters" style="left: 0px; height: 993px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div></flt-platform-view><flt-platform-view id="flt-pv-1" slot="flt-pv-slot-1"><div style="width: 100%; height: 100%;"></div></flt-platform-view><flt-platform-view id="flt-pv-2" slot="flt-pv-slot-2"><div style="width: 100%; height: 100%;"></div></flt-platform-view><flt-platform-view id="flt-pv-3" slot="flt-pv-slot-3"><iframe sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" src="./frame(1).html" style="border: none; width: 100%; height: 100%; pointer-events: auto;"></iframe></flt-platform-view></flt-glass-pane><flt-text-editing-host></flt-text-editing-host><flt-semantics-host style="position: absolute; transform-origin: 0px 0px 0px; transform: scale(0.666667);"></flt-semantics-host><style id="flt-text-editing-stylesheet">flutter-view flt-scene-host {  font: normal normal 14px sans-serif;}flutter-view flt-semantics input[type=range] {  appearance: none;  -webkit-appearance: none;  width: 100%;  position: absolute;  border: none;  top: 0;  right: 0;  bottom: 0;  left: 0;}flutter-view input::selection {  background-color: transparent;}flutter-view textarea::selection {  background-color: transparent;}flutter-view flt-semantics input,flutter-view flt-semantics textarea,flutter-view flt-semantics [contentEditable="true"] {  caret-color: transparent;}flutter-view .flt-text-editing::placeholder {  opacity: 0;}flutter-view:focus { outline: none;}flutter-view .transparentTextEditing:-webkit-autofill,flutter-view .transparentTextEditing:-webkit-autofill:hover,flutter-view .transparentTextEditing:-webkit-autofill:focus,flutter-view .transparentTextEditing:-webkit-autofill:active {  opacity: 0 !important;}</style></flutter-view></body></html>

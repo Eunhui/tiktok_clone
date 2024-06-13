@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:threads/views/home_screen.dart';
 import 'package:threads/views/like_screen.dart';
 import 'package:threads/views/profile_screen.dart';
@@ -20,11 +21,25 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   late int _selectedIndex = 0;
-
+  PanelController panelController = PanelController();
   void _onTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 2) {
+      panelController.isPanelOpen
+          ? panelController.close()
+          : panelController.open();
+    } else {
+      panelController.close();
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WriteScreen(panelController: panelController);
   }
 
   @override
@@ -32,29 +47,32 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Offstage(
-            offstage: _selectedIndex != 0,
-            child: const HomeScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 1,
-            child: const DiscoverScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: const WriteScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 3,
-            child: const LikeScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 4,
-            child: const ProfileScreen(),
-          ),
-        ],
+      body: SlidingUpPanel(
+        controller: panelController,
+        panel: WriteScreen(panelController: panelController),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        minHeight: 0,
+        maxHeight: MediaQuery.of(context).size.height * 0.8,
+        body: Stack(
+          children: [
+            Offstage(
+              offstage: _selectedIndex != 0,
+              child: const HomeScreen(),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 1,
+              child: const DiscoverScreen(),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 3,
+              child: const LikeScreen(),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 4,
+              child: const ProfileScreen(),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: Container(
         color: Colors.white,

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)https://dartpad.dev/frame.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title></title>
+  <style>
+    body {
+      font-size: 12pt;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      margin-top: 0;
+    }
+  </style>
+  <script src="./require.js.download"></script>
+  <script src="./flutter.js.download"></script>
+  <script src="./frame.js.download"></script>
+<script type="application/javascript" src="blob:null/4e747f17-d2fe-46d0-9710-94be69052d52"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="dart_sdk" src="./dart_sdk.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="flutter_web" src="./flutter_web.js.download"></script><meta flt-viewport="" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta id="flutterweb-theme" name="theme-color" content="rgba(0,0,0,0)"></head>
+
+<body flt-embedding="full-page" flt-renderer="canvaskit (auto-selected)" flt-build-mode="debug" spellcheck="false" style="position: fixed; inset: 0px; overflow: hidden; padding: 0px; margin: 0px; user-select: none; touch-action: none;"><flt-semantics-placeholder role="button" aria-live="polite" tabindex="0" aria-label="Enable accessibility" style="position: absolute; left: -1px; top: -1px; width: 1px; height: 1px;"></flt-semantics-placeholder>
+
+
+
+<div class="shadowDomRootBetterColorPicker" style="display: block;"><template shadowrootmode="open"><div class="content" style="right: -10000px; bottom: -10000px;">
+                <style>
+                    .hidden {
+                        display: none;
+                    }
+                    .content {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        z-index: 999999999;
+                    }
+                    .close {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        cursor: pointer;
+                        padding: 5px;
+                        z-index: 8;
+                        transition: transform 0.2s;
+                    }
+                    .contents:hover .close {
+                        left: -40px;
+                        right: unset;
+                    }
+                    .content:hover .close {
+                        transform: translateX(-30px);
+                    }
+                    .close svg {
+                        height: 20px;
+                        width: 20px;
+                        cursor: pointer;
+                    }
+                    .content img {
+                        position: relative !important;
+                        right: unset !important;
+                        bottom: unset !important;
+                        cursor: pointer;
+                        z-index: 10;
+                    }
+                    .confirm {
+                        position: absolute;
+                        bottom: 0;
+                        right: calc(100% + 4px);
+                        padding: 8px;
+                        border-radius: 8px;
+                        border: 1px solid #637688;
+                        background: #191E23;
+                        z-index: 9;
+                    }
+                    .confirm .title {
+                        color: #FFF;
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+                    .confirm .info {
+                        min-width: 200px;
+                        margin: 8px 0 16px;
+                        color: #E5E9ED;
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 150%;
+                    }
+                    .btns {
+                        display: flex;
+                        gap: 16px;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: nowrap;
+                    }
+                    .btns button {
+                        padding: 4px 8px;
+                        color: #FFF;
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                        font-weight: 700;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        background-color: transparent;
+                        white-space: nowrap;
+                    }
+                </style>
+                <div class="confirm hidden" id="confirm">
+                    <p class="title">Are you sure?</p>
+                    <p class="info">You can always add the widget back from the extension menu</p>
+                    <div class="btns">
+                        <button id="cancel">Cancel</button>
+                        <button id="hide">Hide widget</button>
+                    </div>
+                </div>
+                <div class="close" id="close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#191E23"></rect>
+                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#637688"></rect>
+                        <path d="M6.26668 14.6666L5.33334 13.7333L9.06668 9.99998L5.33334 6.26665L6.26668 5.33331L10 9.06665L13.7333 5.33331L14.6667 6.26665L10.9333 9.99998L14.6667 13.7333L13.7333 14.6666L10 10.9333L6.26668 14.6666Z" fill="#E5E9ED"></path>
+                    </svg>                
+                </div>
+            <img src="chrome-extension://gpibachbddnihfkbjcfggbejjgjdijeb/images/image-button.png" alt="Pick a color on this page!" style="height: 30px; width: 30px; z-index: 9999991; position: fixed; bottom: 10px; right: 10px; cursor: pointer;"></div><div class="alertWindow" style="line-height: 40px; left: 45%; text-align: center; height: 40px; width: 200px; background-color: rgba(47, 46, 46, 0.54); transition: 0.4s; position: fixed; top: -40px; z-index: 999999; border-radius: 5px;">Copied!</div></template></div><flutter-view flt-view-id="0" tabindex="0" style="position: absolute; inset: 0px; width: 341px; height: 371px;"><flt-glass-pane><template shadowrootmode="open"><flt-scene-host style="pointer-events: none;"></flt-scene-host><flt-announcement-host></flt-announcement-host><style id="flt-internals-stylesheet"> flt-scene-host {  font: normal normal 14px sans-serif;} flt-semantics input[type=range] {  appearance: none;  -webkit-appearance: none;  width: 100%;  position: absolute;  border: none;  top: 0;  right: 0;  bottom: 0;  left: 0;} input::selection {  background-color: transparent;} textarea::selection {  background-color: transparent;} flt-semantics input, flt-semantics textarea, flt-semantics [contentEditable="true"] {  caret-color: transparent;} .flt-text-editing::placeholder {  opacity: 0;}:focus { outline: none;} .transparentTextEditing:-webkit-autofill, .transparentTextEditing:-webkit-autofill:hover, .transparentTextEditing:-webkit-autofill:focus, .transparentTextEditing:-webkit-autofill:active {  opacity: 0 !important;}</style></template></flt-glass-pane><flt-text-editing-host></flt-text-editing-host><flt-semantics-host style="position: absolute; transform-origin: 0px 0px 0px; transform: scale(0.666667);"></flt-semantics-host><style id="flt-text-editing-stylesheet">flutter-view flt-scene-host {  font: normal normal 14px sans-serif;}flutter-view flt-semantics input[type=range] {  appearance: none;  -webkit-appearance: none;  width: 100%;  position: absolute;  border: none;  top: 0;  right: 0;  bottom: 0;  left: 0;}flutter-view input::selection {  background-color: transparent;}flutter-view textarea::selection {  background-color: transparent;}flutter-view flt-semantics input,flutter-view flt-semantics textarea,flutter-view flt-semantics [contentEditable="true"] {  caret-color: transparent;}flutter-view .flt-text-editing::placeholder {  opacity: 0;}flutter-view:focus { outline: none;}flutter-view .transparentTextEditing:-webkit-autofill,flutter-view .transparentTextEditing:-webkit-autofill:hover,flutter-view .transparentTextEditing:-webkit-autofill:focus,flutter-view .transparentTextEditing:-webkit-autofill:active {  opacity: 0 !important;}</style></flutter-view></body></html>
