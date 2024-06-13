@@ -1,4 +1,4 @@
-# tiktok_clone
+# threads
 
 A new Flutter project.
 
