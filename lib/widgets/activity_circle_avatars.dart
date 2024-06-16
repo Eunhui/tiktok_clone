@@ -15,13 +15,29 @@ class ActivityCircleAvatars extends StatelessWidget {
 
   Icon _relationIcon() {
     if (relationActivity == 1) {
-      return const Icon(FontAwesomeIcons.at, color: Colors.green);
+      return const Icon(
+        FontAwesomeIcons.at,
+        color: Colors.green,
+        size: Sizes.size16,
+      );
     } else if (relationActivity == 2) {
-      return const Icon(FontAwesomeIcons.reply, color: Colors.blue);
+      return const Icon(
+        FontAwesomeIcons.reply,
+        color: Colors.blue,
+        size: Sizes.size16,
+      );
     } else if (relationActivity == 3) {
-      return const Icon(FontAwesomeIcons.user, color: Colors.purple);
+      return const Icon(
+        FontAwesomeIcons.user,
+        color: Colors.purple,
+        size: Sizes.size16,
+      );
     }
-    return const Icon(FontAwesomeIcons.heartCircleBolt, color: Colors.pink);
+    return const Icon(
+      FontAwesomeIcons.heartCircleBolt,
+      color: Colors.pink,
+      size: Sizes.size16,
+    );
   }
 
   @override
@@ -34,7 +50,7 @@ class ActivityCircleAvatars extends StatelessWidget {
               foregroundImage: NetworkImage(
                 getImage(),
               ),
-              radius: 24,
+              radius: Sizes.size24,
             ),
             Positioned(
               bottom: 0,
@@ -44,13 +60,13 @@ class ActivityCircleAvatars extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: Colors.white,
-                    width: 2.0,
+                    width: Sizes.size2,
                   ),
                 ),
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.white,
-                  radius: 8,
+                  radius: Sizes.size8,
                   child: _relationIcon(),
                 ),
               ),
