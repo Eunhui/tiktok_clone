@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/views/settings.dart';
+import 'package:threads/widgets/thread.dart';
 
 import '../constants/sizes.dart';
 
@@ -24,14 +25,15 @@ class ProfileScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.language, size: Sizes.size32),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(FontAwesomeIcons.instagram, size: Sizes.size32),
+                        const Icon(FontAwesomeIcons.instagram,
+                            size: Sizes.size32),
                         Gaps.h20,
                         IconButton(
                           onPressed: () {
@@ -42,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          icon: Icon(FontAwesomeIcons.barsStaggered,
+                          icon: const Icon(FontAwesomeIcons.barsStaggered,
                               size: Sizes.size32),
                         )
                       ],
@@ -53,108 +55,135 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-              child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 30,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Echo",
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 30,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Echo",
+                                    style: TextStyle(
+                                        fontSize: Sizes.size28,
+                                        fontWeight: FontWeight.bold)),
+                                Text(
+                                  "polite_cat",
                                   style: TextStyle(
-                                      fontSize: Sizes.size28,
-                                      fontWeight: FontWeight.bold)),
-                              Text(
-                                "polite_cat",
-                                style: TextStyle(
-                                  fontSize: Sizes.size16,
+                                    fontSize: Sizes.size16,
+                                  ),
+                                ),
+                              ]),
+                          CircleAvatar(
+                            foregroundImage:
+                                AssetImage('assets/polite_cat.jpg'),
+                            radius: 25,
+                          ),
+                        ],
+                      ),
+                      Gaps.v10,
+                      const Row(
+                        children: [
+                          Text("Cat Meme Enthusiast!"),
+                        ],
+                      ), // image
+                      Gaps.v10,
+                      const Row(children: [Text("2 followers")]), // 2 followers
+                      Gaps.v10,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 43.0),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                side: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
                                 ),
                               ),
-                            ]),
-                        CircleAvatar(
-                          foregroundImage: AssetImage('assets/polite_cat.jpg'),
-                          radius: 25,
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              "Edit profile",
+                              style: TextStyle(
+                                fontSize: Sizes.size16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Gaps.h20,
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 43.0),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                side: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              "Share profile",
+                              style: TextStyle(
+                                fontSize: Sizes.size16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ), //edit profile, share profile
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SliverPersistentHeader(
+            delegate: CustomDelegate(),
+            pinned: true,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return const Stack(
+                  children: [
+                    Column(
+                      children: [
+                        Thread(),
+                        Gaps.v16,
+                        Divider(
+                          height: 0,
+                          thickness: 1,
                         ),
+                        Gaps.v16,
                       ],
                     ),
-                    Gaps.v10,
-                    const Row(
-                      children: [
-                        const Text("Cat Meme Enthusiast!"),
-                      ],
-                    ), // image
-                    Gaps.v10,
-                    Row(children: [Text("2 followers")]), // 2 followers
-                    Gaps.v10,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 43.0),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                              side: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Edit profile",
-                            style: TextStyle(
-                              fontSize: Sizes.size16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Gaps.h20,
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 43.0),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                              side: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Share profile",
-                            style: TextStyle(
-                              fontSize: Sizes.size16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ), //edit profile, share profile
                   ],
-                ),
-              ),
-            ],
-          )),
-          SliverPersistentHeader(delegate: CustomDelegate())
+                );
+              },
+              childCount: 10,
+            ),
+          ),
         ],
       ),
     );
@@ -165,18 +194,22 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    // TODO: implement build
-    return Container(
-      child: FractionallySizedBox(
-        heightFactor: 0.5,
-        child: Center(
-            child: TabBar(
-          labelColor: Colors.black,
-          tabs: [
-            Text("Threads", style: TextStyle(fontSize: Sizes.size18)),
-            Text("Replies", style: TextStyle(fontSize: Sizes.size18)),
-          ],
-        )),
+    return Padding(
+      padding: const EdgeInsets.only(top: 40.0),
+      child: Container(
+        height: maxExtent,
+        color: Colors.white,
+        child: const FractionallySizedBox(
+          heightFactor: 1,
+          child: Center(
+              child: TabBar(
+            labelColor: Colors.black,
+            tabs: [
+              Text("Threads", style: TextStyle(fontSize: Sizes.size18)),
+              Text("Replies", style: TextStyle(fontSize: Sizes.size18)),
+            ],
+          )),
+        ),
       ),
     );
   }
