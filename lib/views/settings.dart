@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:threads/constants/sizes.dart';
+import 'package:threads/widgets/Privacy.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -35,12 +36,21 @@ class Settings extends StatelessWidget {
             title: Text("Notifications"),
             trailing: Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
           ),
-          const ListTile(
-            contentPadding: EdgeInsets.symmetric(
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(
                 horizontal: Sizes.size20, vertical: Sizes.size10),
-            leading: Icon(FontAwesomeIcons.lock),
-            title: Text("Privacy"),
-            trailing: Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
+            leading: const Icon(FontAwesomeIcons.lock),
+            title: const Text("Privacy"),
+            trailing:
+                const Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Privacy(),
+                ),
+              );
+            },
           ),
           const ListTile(
             contentPadding: EdgeInsets.symmetric(
@@ -71,8 +81,8 @@ class Settings extends StatelessWidget {
               showCupertinoModalPopup(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
-                  title: Text("Are you sure?"),
-                  content: Text("Plz don't go"),
+                  title: const Text("Are you sure?"),
+                  content: const Text("Plz don't go"),
                   actions: [
                     CupertinoDialogAction(
                       child: const Text("No",
