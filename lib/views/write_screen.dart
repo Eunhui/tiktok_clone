@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:threads/constants/sizes.dart';
 
@@ -62,7 +63,7 @@ class _WriteScreenState extends State<WriteScreen> {
           ),
           const Divider(thickness: 1),
           Padding(
-            padding: const EdgeInsets.only(top: 12),
+            padding: const EdgeInsets.only(top: 12, left: 10, right: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -120,6 +121,7 @@ class _WriteScreenState extends State<WriteScreen> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       TextFormField(
+                        maxLines: null,
                         onChanged: (value) {
                           if (value.isEmpty) {
                             setState(() {
@@ -137,6 +139,22 @@ class _WriteScreenState extends State<WriteScreen> {
                           hintStyle: TextStyle(fontSize: 14),
                         ),
                       ),
+                      Container(
+                        padding: const EdgeInsets.all(0.0),
+                        width: 0,
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          iconSize: 20,
+                          onPressed: () {
+                            print("hello");
+                          },
+                          icon: const Icon(
+                            FontAwesomeIcons.paperclip,
+                          ),
+                          color: Colors.grey,
+                        ),
+                      )
                     ],
                   ),
                 ),
