@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:threads/constants/sizes.dart';
+import 'package:threads/features/video/widgets/video_recording.dart';
 
 class WriteScreen extends StatefulWidget {
   const WriteScreen({
@@ -147,7 +149,15 @@ class _WriteScreenState extends State<WriteScreen> {
                           constraints: const BoxConstraints(),
                           iconSize: 20,
                           onPressed: () {
-                            print("hello");
+                            setState(() {
+                              GoRouter(routes: [
+                                GoRoute(
+                                  path: "/",
+                                  builder: (context, state) =>
+                                      const VideoRecording(),
+                                ),
+                              ]);
+                            });
                           },
                           icon: const Icon(
                             FontAwesomeIcons.paperclip,
