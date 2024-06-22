@@ -149,15 +149,17 @@ class _WriteScreenState extends State<WriteScreen> {
                           constraints: const BoxConstraints(),
                           iconSize: 20,
                           onPressed: () {
-                            setState(() {
-                              GoRouter(routes: [
-                                GoRoute(
-                                  path: "/",
-                                  builder: (context, state) =>
-                                      const VideoRecording(),
-                                ),
-                              ]);
-                            });
+                            /*setState(() {
+                              GoRouter(
+                                routes: [
+                                  GoRoute(
+                                    path: "/",
+                                    builder: (context, state) =>
+                                        const VideoRecording(),
+                                  ),
+                                ],
+                              );
+                            });*/
                           },
                           icon: const Icon(
                             FontAwesomeIcons.paperclip,
