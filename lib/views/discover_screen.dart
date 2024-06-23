@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/constants/sizes.dart';
+import 'package:threads/features/utils.dart';
 import 'package:threads/utils.dart';
 import 'package:threads/widgets/search_list.dart';
 
@@ -30,8 +31,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: <Widget>[
-            const SliverAppBar(
-              title: Text(
+            SliverAppBar(
+              title: const Text(
                 'Search',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -43,7 +44,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               //forceElevated: innerBoxIsScrolled,
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(50.0),
-                child: CupertinoSearchTextField(),
+                child: CupertinoSearchTextField(
+                  style: TextStyle(
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                  ),
+                ),
               ),
             ),
             SliverList(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threads/constants/gaps.dart';
+import 'package:threads/features/utils.dart';
 import 'package:threads/widgets/reporting_thread.dart';
 
 class ModalBottom extends StatefulWidget {
@@ -29,7 +30,9 @@ class _MyWidgetState extends State<ModalBottom> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
+                    color: isDarkMode(context)
+                        ? Colors.grey.shade800
+                        : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Column(
@@ -53,7 +56,9 @@ class _MyWidgetState extends State<ModalBottom> {
                 const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
+                    color: isDarkMode(context)
+                        ? Colors.grey.shade800
+                        : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(

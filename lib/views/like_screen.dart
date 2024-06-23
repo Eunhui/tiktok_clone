@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:threads/constants/sizes.dart';
+import 'package:threads/features/utils.dart';
 import 'package:threads/widgets/activity_list.dart';
 
 final tabs = [
@@ -52,11 +53,9 @@ class _LikeScreenState extends State<LikeScreen> {
                     labelPadding: const EdgeInsets.symmetric(
                       horizontal: Sizes.size8,
                     ),
-                    labelColor: Colors.white,
-                    unselectedLabelColor: Colors.black,
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.black,
+                      color: isDarkMode(context) ? Colors.white : Colors.black,
                     ),
                     onTap: (index) => setState(() {
                       currentIndexTab = index;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:threads/features/utils.dart';
 import 'package:threads/widgets/border_white.dart';
 import 'package:threads/widgets/go_to_top_button.dart';
 
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'assets/thread.svg',
                   width: 32,
                   height: 32,
-                  color: Colors.black,
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                   colorBlendMode: BlendMode.srcIn,
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/constants/sizes.dart';
+import 'package:threads/features/utils.dart';
 
 class ReportingThread extends StatelessWidget {
   const ReportingThread({super.key});
@@ -14,7 +15,7 @@ class ReportingThread extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Text("Report"),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
@@ -33,7 +34,9 @@ class ReportingThread extends StatelessWidget {
               ),
               Text(
                 "Your report is anonymous, except if you're reporting an\nintellectual property infringement. If someone is in \nimmediate danger, call the local emergency services - \ndon't wait.",
-                style: TextStyle(color: Colors.black54),
+                style: TextStyle(
+                  color: isDarkMode(context) ? Colors.white60 : Colors.black54,
+                ),
               ),
               dividerMenu(),
               Row(

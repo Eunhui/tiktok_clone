@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/constants/sizes.dart';
+import 'package:threads/features/utils.dart';
 import 'package:threads/utils.dart';
 
 class search_list extends StatelessWidget {
@@ -39,12 +40,12 @@ class search_list extends StatelessWidget {
           ),
         ),
         onPressed: () {},
-        child: const Text(
+        child: Text(
           "Follow",
           style: TextStyle(
             fontSize: Sizes.size14,
             fontWeight: FontWeight.w700,
-            color: Colors.black,
+            color: isDarkMode(context) ? Colors.white : Colors.black,
           ),
         ),
       ),

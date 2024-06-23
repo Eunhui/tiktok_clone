@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:threads/constants/gaps.dart';
+import 'package:threads/features/utils.dart';
 import 'package:threads/views/settings.dart';
 import 'package:threads/widgets/thread.dart';
 
@@ -116,12 +117,14 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {},
-                            child: const Text(
+                            child: Text(
                               "Edit profile",
                               style: TextStyle(
                                 fontSize: Sizes.size16,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.black,
+                                color: isDarkMode(context)
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
                             ),
                           ),
@@ -141,12 +144,14 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {},
-                            child: const Text(
+                            child: Text(
                               "Share profile",
                               style: TextStyle(
                                 fontSize: Sizes.size16,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.black,
+                                color: isDarkMode(context)
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
                             ),
                           ),
@@ -198,17 +203,30 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
       padding: const EdgeInsets.only(top: 40.0),
       child: Container(
         height: maxExtent,
-        color: Colors.white,
-        child: const FractionallySizedBox(
+        //color: Colors.white,
+        child: FractionallySizedBox(
           heightFactor: 1,
           child: Center(
-              child: TabBar(
-            labelColor: Colors.black,
-            tabs: [
-              Text("Threads", style: TextStyle(fontSize: Sizes.size18)),
-              Text("Replies", style: TextStyle(fontSize: Sizes.size18)),
-            ],
-          )),
+            child: TabBar(
+              //labelColor: Colors.black,
+              tabs: [
+                Text(
+                  "Threads",
+                  style: TextStyle(
+                    fontSize: Sizes.size18,
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                  ),
+                ),
+                Text(
+                  "Replies",
+                  style: TextStyle(
+                    fontSize: Sizes.size18,
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -225,6 +243,6 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     // TODO: implement shouldRebuild
-    return false;
+    return true;
   }
 }

@@ -39,15 +39,31 @@ class App extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        tabBarTheme: TabBarTheme(
-          labelColor: Colors.black,
-          unselectedLabelColor: Colors.grey.shade500,
-          indicatorColor: Colors.black,
+        tabBarTheme: const TabBarTheme(
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.black,
+          //indicatorColor: Colors.black,
         ),
         listTileTheme: const ListTileThemeData(
           iconColor: Colors.black,
         ),
       ),
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: Colors.black,
+          primaryColor: const Color(0xFFE9435A),
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Color(0xFFE9435A),
+          ),
+          textTheme: Typography.whiteMountainView,
+          tabBarTheme: const TabBarTheme(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.white,
+            //indicatorColor: Colors.black,
+          ),
+          bottomSheetTheme: BottomSheetThemeData(
+            backgroundColor: Colors.black,
+          )),
     );
   }
 }

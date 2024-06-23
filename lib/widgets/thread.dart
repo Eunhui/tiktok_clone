@@ -23,6 +23,7 @@ class _ThreadState extends State<Thread> {
       showDragHandle: true,
       context: context,
       builder: (context) => const ModalBottom(),
+      elevation: 0,
     );
   }
 
