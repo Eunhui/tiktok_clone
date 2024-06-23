@@ -22,19 +22,12 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   late int _selectedIndex = 4;
-  PanelController panelController = PanelController();
+
   bool isPanelOpen = false;
   void _onTap(int index) {
-    if (index == 2) {
-      panelController.isPanelOpen
-          ? panelController.close()
-          : panelController.open();
-    } else {
-      panelController.close();
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   _onWriteTap() {
