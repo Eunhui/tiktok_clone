@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:threads/widgets/reply_circle_avartars.dart';
+import 'package:threads/views/widgets/reply_circle_avartars.dart';
 
-import '../constants/sizes.dart';
-import '../utils.dart';
+import '../../constants/sizes.dart';
+import '../../utils.dart';
 
 class ReplyTimeline extends StatelessWidget {
   final int replies;

@@ -1,10 +1,12 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/utils.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/utils.dart';
-import 'package:threads/widgets/activity_circle_avatars.dart';
+import 'package:threads/views/widgets/activity_circle_avatars.dart';
 
 class ActivityList extends StatelessWidget {
   const ActivityList({
@@ -45,7 +47,9 @@ class ActivityList extends StatelessWidget {
                 style: TextStyle(
                   fontSize: Sizes.size14,
                   fontWeight: FontWeight.w700,
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: context.watch<DarkmodeConfigVm>().Dark
+                      ? Colors.white
+                      : Colors.black,
                 ),
               ),
             )

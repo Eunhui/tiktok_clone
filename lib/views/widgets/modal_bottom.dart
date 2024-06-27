@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/features/utils.dart';
-import 'package:threads/widgets/reporting_thread.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
+import 'package:threads/views/widgets/reporting_thread.dart';
 
 class ModalBottom extends StatefulWidget {
   const ModalBottom({super.key});
@@ -30,7 +32,7 @@ class _MyWidgetState extends State<ModalBottom> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: isDarkMode(context)
+                    color: context.watch<DarkmodeConfigVm>().Dark
                         ? Colors.grey.shade800
                         : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
@@ -56,7 +58,7 @@ class _MyWidgetState extends State<ModalBottom> {
                 const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
-                    color: isDarkMode(context)
+                    color: context.watch<DarkmodeConfigVm>().Dark
                         ? Colors.grey.shade800
                         : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),

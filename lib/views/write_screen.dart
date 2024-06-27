@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/utils.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
 
 class WriteScreen extends StatefulWidget {
   const WriteScreen({
@@ -38,7 +40,9 @@ class _WriteScreenState extends State<WriteScreen> {
                   child: Text(
                     'Cancel',
                     style: TextStyle(
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      color: context.watch<DarkmodeConfigVm>().Dark
+                          ? Colors.white
+                          : Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

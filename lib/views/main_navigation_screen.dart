@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:threads/features/utils.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/views/home_screen.dart';
 import 'package:threads/views/like_screen.dart';
 import 'package:threads/views/profile_screen.dart';
@@ -9,22 +12,43 @@ import 'package:threads/views/discover_screen.dart';
 import 'package:threads/views/write_screen.dart';
 
 import '../../../constants/sizes.dart';
-import '../widgets/nav_tab.dart';
+import 'widgets/nav_tab.dart';
 
 class MainNavigationScreen extends StatefulWidget {
+  final Widget child;
   const MainNavigationScreen({
+    required this.child,
     super.key,
   });
-
+  static const String routeURL = '/';
+  static const String routeName = '/';
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  late int _selectedIndex = 4;
+  late int _selectedIndex = 0;
 
   bool isPanelOpen = false;
+
   void _onTap(int index) {
+    switch (index) {
+      case 0:
+        context.go('/home');
+        break;
+      case 1:
+        context.go('/discover');
+        break;
+      case 2:
+        _onWriteTap();
+        break;
+      case 3:
+        context.go('/like');
+        break;
+      case 4:
+        context.go('/profile');
+        break;
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -50,32 +74,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = isDarkMode(context);
+    final isDark = context.watch<DarkmodeConfigVm>().Dark;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       //backgroundColor: Colors.white,
 
-      body: Stack(
-        children: [
-          Offstage(
-            offstage: _selectedIndex != 0,
-            child: const HomeScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 1,
-            child: const DiscoverScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 3,
-            child: const LikeScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 4,
-            child: const ProfileScreen(),
-          ),
-          if (isPanelOpen) Container(color: Colors.transparent)
-        ],
-      ),
+      body: widget.child,
 
       bottomNavigationBar: Container(
         color: isDark ? Colors.black : Colors.white,

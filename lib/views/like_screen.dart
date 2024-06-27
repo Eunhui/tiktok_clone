@@ -2,9 +2,11 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/utils.dart';
-import 'package:threads/widgets/activity_list.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
+import 'package:threads/views/widgets/activity_list.dart';
 
 final tabs = [
   "All",
@@ -20,6 +22,9 @@ class LikeScreen extends StatefulWidget {
   const LikeScreen({Key? key}) : super(key: key);
   @override
   State<LikeScreen> createState() => _LikeScreenState();
+
+  static const String routeURL = '/like';
+  static const String routeName = 'like';
 }
 
 class _LikeScreenState extends State<LikeScreen> {
@@ -55,7 +60,9 @@ class _LikeScreenState extends State<LikeScreen> {
                     ),
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      color: context.watch<DarkmodeConfigVm>().Dark
+                          ? Colors.white
+                          : Colors.black,
                     ),
                     onTap: (index) => setState(() {
                       currentIndexTab = index;

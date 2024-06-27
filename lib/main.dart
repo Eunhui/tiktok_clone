@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:threads/views/main_navigation_screen.dart';
-
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:threads/features/repos/darkmode_config_config.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'constants/sizes.dart';
+import 'router.dart';
 
-void main() {
-  runApp(const App());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final preferences = await SharedPreferences.getInstance();
+  final repository = DarkmodeConfigRepository(preferences);
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => DarkmodeConfigVm(repository),
+    ),
+  ], child: const App()));
 }
 
 class App extends StatelessWidget {
@@ -14,10 +25,13 @@ class App extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    return MaterialApp(
-      home: const MainNavigationScreen(),
-      title: 'Nreads',
-      themeMode: ThemeMode.system,
+    final DarkmodeConfigVm_model = context.watch<DarkmodeConfigVm>().Dark;
+
+    return MaterialApp.router(
+      routerConfig: router,
+      //home: const MainNavigationScreen(),
+      title: 'reads',
+      themeMode: DarkmodeConfigVm_model ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         useMaterial3: true,
         textTheme: Typography.blackMountainView,
@@ -47,23 +61,27 @@ class App extends StatelessWidget {
         listTileTheme: const ListTileThemeData(
           iconColor: Colors.black,
         ),
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.white,
+        ),
       ),
       darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.black,
-          primaryColor: const Color(0xFFE9435A),
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-          ),
-          textTheme: Typography.whiteMountainView,
-          tabBarTheme: const TabBarTheme(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.white,
-            //indicatorColor: Colors.black,
-          ),
-          bottomSheetTheme: BottomSheetThemeData(
-            backgroundColor: Colors.black,
-          )),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: const Color(0xFFE9435A),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
+        textTheme: Typography.whiteMountainView,
+        tabBarTheme: const TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.white,
+          //indicatorColor: Colors.black,
+        ),
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.black,
+        ),
+      ),
     );
   }
 }

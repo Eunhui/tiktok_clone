@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/features/utils.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/views/settings.dart';
-import 'package:threads/widgets/thread.dart';
+import 'package:threads/views/widgets/thread.dart';
 
 import '../constants/sizes.dart';
 
@@ -38,12 +41,7 @@ class ProfileScreen extends StatelessWidget {
                         Gaps.h20,
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Settings(),
-                              ),
-                            );
+                            GoRouter.of(context).go('/settings');
                           },
                           icon: const Icon(FontAwesomeIcons.barsStaggered,
                               size: Sizes.size32),
@@ -122,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: Sizes.size16,
                                 fontWeight: FontWeight.w700,
-                                color: isDarkMode(context)
+                                color: context.watch<DarkmodeConfigVm>().Dark
                                     ? Colors.white
                                     : Colors.black,
                               ),
@@ -149,7 +147,7 @@ class ProfileScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: Sizes.size16,
                                 fontWeight: FontWeight.w700,
-                                color: isDarkMode(context)
+                                color: context.watch<DarkmodeConfigVm>().Dark
                                     ? Colors.white
                                     : Colors.black,
                               ),
@@ -214,14 +212,18 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
                   "Threads",
                   style: TextStyle(
                     fontSize: Sizes.size18,
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: context.watch<DarkmodeConfigVm>().Dark
+                        ? Colors.white
+                        : Colors.black,
                   ),
                 ),
                 Text(
                   "Replies",
                   style: TextStyle(
                     fontSize: Sizes.size18,
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: context.watch<DarkmodeConfigVm>().Dark
+                        ? Colors.white
+                        : Colors.black,
                   ),
                 ),
               ],

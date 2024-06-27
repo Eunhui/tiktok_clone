@@ -1,11 +1,46 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/sizes.dart';
-import 'package:threads/widgets/Privacy.dart';
+import 'package:threads/features/models/darkmode_config_model.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
+import 'package:threads/main.dart';
+import 'package:threads/views/widgets/Privacy.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   const Settings({super.key});
+  static const String routeURL = '/settings';
+  static const String routeName = 'settings';
+
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  late DarkmodeConfigVm _darkmodeConfigVm;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _darkmodeConfigVm = Provider.of<DarkmodeConfigVm>(context, listen: false);
+      _darkmodeConfigVm.addListener(_onDarkmodeConfigChanged);
+    });
+  }
+
+  void _onDarkmodeConfigChanged() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void dispose() {
+    _darkmodeConfigVm.removeListener(_onDarkmodeConfigChanged);
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +79,7 @@ class Settings extends StatelessWidget {
             trailing:
                 const Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Privacy(),
-                ),
-              );
+              GoRouter.of(context).go('/settings/privacy');
             },
           ),
           const ListTile(
@@ -58,6 +88,18 @@ class Settings extends StatelessWidget {
             leading: Icon(FontAwesomeIcons.circleUser),
             title: Text("Account"),
             trailing: Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
+          ),
+          SwitchListTile.adaptive(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: Sizes.size20,
+              vertical: Sizes.size10,
+            ),
+            value: context.watch<DarkmodeConfigVm>().Dark,
+            onChanged: (value) =>
+                context.read<DarkmodeConfigVm>().setDark(value),
+            //leading: Icon(FontAwesomeIcons.circleHalfStroke),
+            title: const Text("Appearance"),
+            //trailing: Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
           ),
           const ListTile(
             contentPadding: EdgeInsets.symmetric(

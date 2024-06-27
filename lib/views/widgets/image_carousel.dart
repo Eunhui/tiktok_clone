@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../constants/sizes.dart';
+import '../../constants/sizes.dart';
 
 class ImageCarousel extends StatelessWidget {
   final List<String> imageUrls;

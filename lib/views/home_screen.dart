@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/features/utils.dart';
-import 'package:threads/widgets/border_white.dart';
-import 'package:threads/widgets/go_to_top_button.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
+import 'package:threads/views/widgets/border_white.dart';
+import 'package:threads/views/widgets/go_to_top_button.dart';
 
 import '../constants/gaps.dart';
 import '../utils.dart';
-import '../widgets/thread.dart';
+import 'widgets/thread.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  static const String routeURL = '/home';
+  static const String routeName = 'home';
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -61,7 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   'assets/thread.svg',
                   width: 32,
                   height: 32,
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: context.watch<DarkmodeConfigVm>().Dark
+                      ? Colors.white
+                      : Colors.black,
                   colorBlendMode: BlendMode.srcIn,
                 ),
               ),

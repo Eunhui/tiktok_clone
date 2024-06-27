@@ -1,11 +1,11 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:threads/widgets/modal_bottom.dart';
-import 'package:threads/widgets/reply_timeline.dart';
+import 'package:threads/views/widgets/modal_bottom.dart';
+import 'package:threads/views/widgets/reply_timeline.dart';
 
-import '../constants/gaps.dart';
-import '../utils.dart';
+import '../../constants/gaps.dart';
+import '../../utils.dart';
 import 'image_carousel.dart';
 
 class Thread extends StatefulWidget {
