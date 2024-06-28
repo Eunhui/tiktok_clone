@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:threads/features/repos/darkmode_config_config.dart';
@@ -11,27 +12,30 @@ void main() async {
   final preferences = await SharedPreferences.getInstance();
   final repository = DarkmodeConfigRepository(preferences);
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => DarkmodeConfigVm(repository),
+  runApp(
+    ProviderScope(
+      overrides: [
+        darkmodeConfigProvider.overrideWith(() => DarkmodeConfigVm(repository))
+      ],
+      child: const App(),
     ),
-  ], child: const App()));
+  );
 }
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
-    final DarkmodeConfigVm_model = context.watch<DarkmodeConfigVm>().Dark;
+  Widget build(BuildContext context, WidgetRef ref) {
+    //final DarkmodeConfigVm_model = context.watch<DarkmodeConfigVm>().Dark;
 
     return MaterialApp.router(
       routerConfig: router,
       //home: const MainNavigationScreen(),
       title: 'reads',
-      themeMode: DarkmodeConfigVm_model ? ThemeMode.dark : ThemeMode.light,
+      themeMode: ref.watch(darkmodeConfigProvider).isdark
+          ? ThemeMode.dark
+          : ThemeMode.light,
       theme: ThemeData(
         useMaterial3: true,
         textTheme: Typography.blackMountainView,

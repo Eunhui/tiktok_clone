@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -11,14 +12,15 @@ import 'package:threads/views/widgets/thread.dart';
 
 import '../constants/sizes.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   static const String routeURL = '/profile';
   static const String routeName = 'profile';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isdark = ref.watch(darkmodeConfigProvider).isdark;
     return DefaultTabController(
       length: 2,
       child: CustomScrollView(
@@ -120,9 +122,7 @@ class ProfileScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: Sizes.size16,
                                 fontWeight: FontWeight.w700,
-                                color: context.watch<DarkmodeConfigVm>().Dark
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: isdark ? Colors.white : Colors.black,
                               ),
                             ),
                           ),
@@ -147,9 +147,7 @@ class ProfileScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: Sizes.size16,
                                 fontWeight: FontWeight.w700,
-                                color: context.watch<DarkmodeConfigVm>().Dark
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: isdark ? Colors.white : Colors.black,
                               ),
                             ),
                           ),
@@ -162,7 +160,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           SliverPersistentHeader(
-            delegate: CustomDelegate(),
+            delegate: CustomDelegate(isdark),
             pinned: true,
           ),
           SliverList(
@@ -194,6 +192,8 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class CustomDelegate extends SliverPersistentHeaderDelegate {
+  bool isdark;
+  CustomDelegate(this.isdark);
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -212,18 +212,14 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
                   "Threads",
                   style: TextStyle(
                     fontSize: Sizes.size18,
-                    color: context.watch<DarkmodeConfigVm>().Dark
-                        ? Colors.white
-                        : Colors.black,
+                    color: isdark ? Colors.white : Colors.black,
                   ),
                 ),
                 Text(
                   "Replies",
                   style: TextStyle(
                     fontSize: Sizes.size18,
-                    color: context.watch<DarkmodeConfigVm>().Dark
-                        ? Colors.white
-                        : Colors.black,
+                    color: isdark ? Colors.white : Colors.black,
                   ),
                 ),
               ],

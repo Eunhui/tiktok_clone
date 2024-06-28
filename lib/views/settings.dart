@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -9,41 +10,13 @@ import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/main.dart';
 import 'package:threads/views/widgets/Privacy.dart';
 
-class Settings extends StatefulWidget {
+class Settings extends ConsumerWidget {
   const Settings({super.key});
   static const String routeURL = '/settings';
   static const String routeName = 'settings';
 
   @override
-  State<Settings> createState() => _SettingsState();
-}
-
-class _SettingsState extends State<Settings> {
-  late DarkmodeConfigVm _darkmodeConfigVm;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _darkmodeConfigVm = Provider.of<DarkmodeConfigVm>(context, listen: false);
-      _darkmodeConfigVm.addListener(_onDarkmodeConfigChanged);
-    });
-  }
-
-  void _onDarkmodeConfigChanged() {
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  void dispose() {
-    _darkmodeConfigVm.removeListener(_onDarkmodeConfigChanged);
-
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -94,12 +67,10 @@ class _SettingsState extends State<Settings> {
               horizontal: Sizes.size20,
               vertical: Sizes.size10,
             ),
-            value: context.watch<DarkmodeConfigVm>().Dark,
+            value: ref.watch(darkmodeConfigProvider).isdark,
             onChanged: (value) =>
-                context.read<DarkmodeConfigVm>().setDark(value),
-            //leading: Icon(FontAwesomeIcons.circleHalfStroke),
+                {ref.read(darkmodeConfigProvider.notifier).setDark(value)},
             title: const Text("Appearance"),
-            //trailing: Icon(FontAwesomeIcons.angleRight, color: Colors.grey),
           ),
           const ListTile(
             contentPadding: EdgeInsets.symmetric(
@@ -117,7 +88,7 @@ class _SettingsState extends State<Settings> {
           ),
           Divider(color: Colors.grey.shade300),
           ListTile(
-            title: Text("Log out"),
+            title: const Text("Log out"),
             textColor: Colors.blue,
             onTap: () {
               showCupertinoModalPopup(
@@ -135,7 +106,7 @@ class _SettingsState extends State<Settings> {
                     ),
                     CupertinoDialogAction(
                       isDestructiveAction: true,
-                      child: Text("Yes"),
+                      child: const Text("Yes"),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ],

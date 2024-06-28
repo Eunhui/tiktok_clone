@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/features/utils.dart';
 import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/views/widgets/reporting_thread.dart';
 
-class ModalBottom extends StatefulWidget {
+class ModalBottom extends ConsumerStatefulWidget {
   const ModalBottom({super.key});
 
   @override
-  State<ModalBottom> createState() => _MyWidgetState();
+  MyWidgetState createState() => MyWidgetState();
 }
 
-class _MyWidgetState extends State<ModalBottom> {
+class MyWidgetState extends ConsumerState {
   bool _showReportScreen = false;
   void _onToggleToReport() {
     setState(() {
@@ -23,6 +24,7 @@ class _MyWidgetState extends State<ModalBottom> {
 
   @override
   Widget build(BuildContext context) {
+    bool isdark = ref.watch(darkmodeConfigProvider).isdark;
     return Container(
       padding: const EdgeInsets.all(10),
       child: _showReportScreen
@@ -32,9 +34,7 @@ class _MyWidgetState extends State<ModalBottom> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: context.watch<DarkmodeConfigVm>().Dark
-                        ? Colors.grey.shade800
-                        : Colors.grey.shade200,
+                    color: isdark ? Colors.grey.shade800 : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Column(
@@ -58,9 +58,7 @@ class _MyWidgetState extends State<ModalBottom> {
                 const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
-                    color: context.watch<DarkmodeConfigVm>().Dark
-                        ? Colors.grey.shade800
-                        : Colors.grey.shade200,
+                    color: isdark ? Colors.grey.shade800 : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(

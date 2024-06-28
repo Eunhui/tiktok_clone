@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/utils.dart';
 import 'package:threads/features/view_models/darkmode_config_vm.dart';
 
-class WriteScreen extends StatefulWidget {
+class WriteScreen extends ConsumerStatefulWidget {
   const WriteScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static const String routeURL = '/write';
   static const String routeName = 'write';
 
   @override
-  State<WriteScreen> createState() => _WriteScreenState();
+  WriteScreenState createState() => WriteScreenState();
 }
 
-class _WriteScreenState extends State<WriteScreen> {
+class WriteScreenState extends ConsumerState<WriteScreen> {
   bool isPost = false;
   @override
   Widget build(BuildContext context) {
+    bool isdark = ref.watch(darkmodeConfigProvider).isdark;
     return Scaffold(
-      //backgroundColor: Colors.transparent,
       body: SafeArea(
         top: false,
-        child:
-            // padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            Column(
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,9 +39,7 @@ class _WriteScreenState extends State<WriteScreen> {
                   child: Text(
                     'Cancel',
                     style: TextStyle(
-                      color: context.watch<DarkmodeConfigVm>().Dark
-                          ? Colors.white
-                          : Colors.black,
+                      color: isdark ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

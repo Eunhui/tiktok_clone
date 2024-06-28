@@ -1,23 +1,27 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/utils.dart';
+import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/utils.dart';
 
-class search_list extends StatelessWidget {
+class search_list extends ConsumerWidget {
   const search_list({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final faker = Faker();
     final random = RandomGenerator(seed: DateTime.now().millisecondsSinceEpoch);
     final userName = faker.internet.userName();
     final verified = random.integer(2);
     final nickName = userName.replaceAll('.', '_');
     final numberOfFollower = random.integer(100000);
+    bool isdark = ref.watch(darkmodeConfigProvider).isdark;
 
     return ListTile(
       leading: CircleAvatar(
@@ -45,7 +49,7 @@ class search_list extends StatelessWidget {
           style: TextStyle(
             fontSize: Sizes.size14,
             fontWeight: FontWeight.w700,
-            color: isDarkMode(context) ? Colors.white : Colors.black,
+            color: isdark ? Colors.white : Colors.black,
           ),
         ),
       ),

@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/utils.dart';
@@ -18,16 +19,16 @@ final tabs = [
   "Verified",
 ];
 
-class LikeScreen extends StatefulWidget {
+class LikeScreen extends ConsumerStatefulWidget {
   const LikeScreen({Key? key}) : super(key: key);
   @override
-  State<LikeScreen> createState() => _LikeScreenState();
+  LikeScreenState createState() => LikeScreenState();
 
   static const String routeURL = '/like';
   static const String routeName = 'like';
 }
 
-class _LikeScreenState extends State<LikeScreen> {
+class LikeScreenState extends ConsumerState {
   int currentIndexTab = 0;
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class _LikeScreenState extends State<LikeScreen> {
                     ),
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: context.watch<DarkmodeConfigVm>().Dark
+                      color: ref.watch(darkmodeConfigProvider).isdark
                           ? Colors.white
                           : Colors.black,
                     ),

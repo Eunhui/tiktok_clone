@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:threads/features/utils.dart';
@@ -10,16 +11,16 @@ import '../constants/gaps.dart';
 import '../utils.dart';
 import 'widgets/thread.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   static const String routeURL = '/home';
   static const String routeName = 'home';
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends ConsumerState {
   final ScrollController _scrollController = ScrollController();
   bool _showModal = false;
 
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'assets/thread.svg',
                   width: 32,
                   height: 32,
-                  color: context.watch<DarkmodeConfigVm>().Dark
+                  color: ref.watch(darkmodeConfigProvider).isdark
                       ? Colors.white
                       : Colors.black,
                   colorBlendMode: BlendMode.srcIn,

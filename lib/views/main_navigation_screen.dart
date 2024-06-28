@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ import 'package:threads/views/write_screen.dart';
 import '../../../constants/sizes.dart';
 import 'widgets/nav_tab.dart';
 
-class MainNavigationScreen extends StatefulWidget {
+class MainNavigationScreen extends ConsumerStatefulWidget {
   final Widget child;
   const MainNavigationScreen({
     required this.child,
@@ -23,10 +24,10 @@ class MainNavigationScreen extends StatefulWidget {
   static const String routeURL = '/';
   static const String routeName = '/';
   @override
-  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+  MainNavigationScreenState createState() => MainNavigationScreenState();
 }
 
-class _MainNavigationScreenState extends State<MainNavigationScreen> {
+class MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   late int _selectedIndex = 0;
 
   bool isPanelOpen = false;
@@ -74,7 +75,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = context.watch<DarkmodeConfigVm>().Dark;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       //backgroundColor: Colors.white,
@@ -82,7 +82,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       body: widget.child,
 
       bottomNavigationBar: Container(
-        color: isDark ? Colors.black : Colors.white,
+        color: ref.watch(darkmodeConfigProvider).isdark
+            ? Colors.black
+            : Colors.white,
         child: Padding(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).padding.bottom + Sizes.size12,

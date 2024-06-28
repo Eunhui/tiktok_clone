@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:threads/constants/gaps.dart';
 import 'package:threads/constants/sizes.dart';
@@ -8,13 +9,13 @@ import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/utils.dart';
 import 'package:threads/views/widgets/activity_circle_avatars.dart';
 
-class ActivityList extends StatelessWidget {
+class ActivityList extends ConsumerWidget {
   const ActivityList({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final faker = Faker();
     final random = RandomGenerator(seed: DateTime.now().millisecondsSinceEpoch);
     final userName = faker.internet.userName();
@@ -24,6 +25,7 @@ class ActivityList extends StatelessWidget {
     final sentence = faker.lorem.sentence();
     final hasSentence = random.integer(3) != 0;
     final relationActivity = random.integer(4);
+    bool isdark = ref.watch(darkmodeConfigProvider).isdark;
 
     return ListTile(
       leading: ActivityCircleAvatars(relationActivity: relationActivity),
@@ -47,9 +49,7 @@ class ActivityList extends StatelessWidget {
                 style: TextStyle(
                   fontSize: Sizes.size14,
                   fontWeight: FontWeight.w700,
-                  color: context.watch<DarkmodeConfigVm>().Dark
-                      ? Colors.white
-                      : Colors.black,
+                  color: isdark ? Colors.white : Colors.black,
                 ),
               ),
             )
