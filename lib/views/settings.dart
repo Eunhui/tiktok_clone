@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:threads/constants/sizes.dart';
 import 'package:threads/features/models/darkmode_config_model.dart';
+import 'package:threads/features/repos/authentication_repo.dart';
 import 'package:threads/features/view_models/darkmode_config_vm.dart';
 import 'package:threads/main.dart';
 import 'package:threads/views/widgets/Privacy.dart';
@@ -107,7 +108,7 @@ class Settings extends ConsumerWidget {
                     CupertinoDialogAction(
                       isDestructiveAction: true,
                       child: const Text("Yes"),
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => ref.read(authRepo).signOut(),
                     ),
                   ],
                 ),

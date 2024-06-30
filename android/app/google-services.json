@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "199293205107",
+    "project_id": "thread2-eunhee",
+    "storage_bucket": "thread2-eunhee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199293205107:android:0146a307df84f59f76c806",
+        "android_client_info": {
+          "package_name": "com.example.threads"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeJMfrbUukOxJvTB0-1b8eO0EH3VWX0m4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
