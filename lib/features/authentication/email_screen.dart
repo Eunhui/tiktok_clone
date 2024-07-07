@@ -45,15 +45,6 @@ class _EmailScreenState extends State<EmailScreen> {
     FocusScope.of(context).unfocus();
   }
 
-  void _onSubmit() {
-    if (_email.isEmpty || _isEmailValid() != null) return;
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PasswordScreen(),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

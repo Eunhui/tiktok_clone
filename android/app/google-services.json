@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "880094079813",
+    "project_id": "eunhee-final-nomadcoders",
+    "storage_bucket": "eunhee-final-nomadcoders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880094079813:android:c06c038e1971c52d2d2c2c",
+        "android_client_info": {
+          "package_name": "nomadcoders.eunhee.final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwtz6Ulzgq71-SND6Hmz32Ns7LazFS_4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
