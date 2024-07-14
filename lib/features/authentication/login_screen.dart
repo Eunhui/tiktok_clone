@@ -9,6 +9,8 @@ import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
+  static const String routeURL = '/login';
+  static const String routeName = 'login';
 
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
@@ -19,7 +21,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController _controllerPw = TextEditingController();
   bool _isButtonEnabled = false;
   void onSignup(BuildContext context) {
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SignUpScreen(),
+      ),
+    );
   }
 
   void initState() {

@@ -1,33 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/username_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
+import 'package:tiktok_clone/features/authentication/view_models/login_view_model.dart';
+import 'package:tiktok_clone/features/authentication/view_models/singup_view_model.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
-  void onLoginTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+  static const String routeURL = '/signup';
+  static const String routeName = 'signup';
+
+  @override
+  ConsumerState<SignUpScreen> createState() => SignUpScreenState();
+}
+
+class SignUpScreenState extends ConsumerState<SignUpScreen> {
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPw = TextEditingController();
+  bool _isButtonEnabled = false;
+  void initState() {
+    super.initState();
+    _controllerEmail.addListener(_checkButtonEnabled);
+    _controllerPw.addListener(_checkButtonEnabled);
   }
 
-  void onEmailTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const UsernameScreen(),
-      ),
-    );
+  void _checkButtonEnabled() {
+    setState(() {
+      _isButtonEnabled = _controllerEmail.text.isNotEmpty &&
+          _controllerPw.text.isNotEmpty &&
+          _controllerPw.text.length > 6;
+    });
+  }
+
+  void onSignUp(_email, _pw) {
+    ref.read(signUpForm.notifier).state = {"email": _email, "password": _pw};
+    ref.read(signUpProvider.notifier).signUp();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          '🔥MOOD🔥',
+          style: TextStyle(
+            fontSize: Sizes.size24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -36,31 +62,65 @@ class SignUpScreen extends StatelessWidget {
           child: Column(
             children: [
               Gaps.v80,
-              const Text('Sign up for TikTok',
-                  style: TextStyle(
-                    fontSize: Sizes.size24,
-                    fontWeight: FontWeight.w700,
-                  )),
-              Gaps.v20,
               const Text(
-                "Create a profile, follow other accounts, make your own videos, and more.",
+                "Join!",
                 style: TextStyle(
-                  fontSize: Sizes.size14,
-                  color: Colors.black45,
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
-              Gaps.v40,
-              GestureDetector(
-                onTap: () => onEmailTap(context),
-                child: const AuthButton(
-                    icon: FaIcon(FontAwesomeIcons.user),
-                    text: "Use email & password"),
+              Gaps.v20,
+              SizedBox(
+                width: 500,
+                child: TextField(
+                  controller: _controllerEmail,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    labelText: 'Email',
+                  ),
+                ),
               ),
-              Gaps.v16,
-              const AuthButton(
-                  icon: FaIcon(FontAwesomeIcons.apple),
-                  text: "Continue with Apple"),
+              Gaps.v28,
+              SizedBox(
+                width: 500,
+                child: TextField(
+                  controller: _controllerPw,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    labelText: 'Password',
+                  ),
+                ),
+              ),
+              Gaps.v28,
+              _isButtonEnabled
+                  ? SizedBox(
+                      width: 500,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.pink.shade400,
+                          foregroundColor: Colors.white,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          _isButtonEnabled
+                              ? onSignUp(
+                                  _controllerEmail.text, _controllerPw.text)
+                              : null;
+                        },
+                        child: const Text("Sign Up"),
+                      ),
+                    )
+                  : SizedBox(),
             ],
           ),
         ),
@@ -76,7 +136,7 @@ class SignUpScreen extends StatelessWidget {
               const Text('Already have an account?'),
               Gaps.h5,
               GestureDetector(
-                onTap: () => onLoginTap(context),
+                onTap: () => Navigator.of(context).pop(),
                 child: Text(
                   'Log in',
                   style: TextStyle(

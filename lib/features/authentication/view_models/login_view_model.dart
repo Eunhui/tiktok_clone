@@ -20,9 +20,9 @@ class LoginViewModel extends AsyncNotifier<void> {
       () async => await _repository.logIn(email, password),
     );
     if (state.hasError) {
-      final snack = SnackBar(
+      final snack = const SnackBar(
         content: Text(
-          (state.error as FirebaseException).message ?? "Information worng",
+          "Information worng",
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snack);
